@@ -403,7 +403,7 @@ void showFloatWindowContinue(bool show)
         
         //获取窗口
         floatWindow = makeWindow(NSStringFromClass(FloatWindow.class));
-        floatWindow.windowLevel = UIWindowLevelAlert - 1; //比Alert低一级, 防止UIWebView的alert显示到下层去了
+        floatWindow.windowLevel = UIWindowLevelAlert - 1;
         floatWindow.rootViewController = rootVC;
         
         NSLog(@"FloatWindow=size=%@, %@, %@", NSStringFromCGRect(floatWindow.frame), NSStringFromCGRect(UIScreen.mainScreen.bounds), NSStringFromCGRect(UIScreen.mainScreen.nativeBounds));
@@ -526,8 +526,6 @@ void initload()
     }
     
     NSString* app_package = [[NSBundle mainBundle] bundleIdentifier];
-    if(app_package.hash==0xa8f1ac9df8696cea || app_package.hash==0xa8f1aca37f747aea)
-        return; //UIWebView冲突
     
     NSString* htmlstub = [NSString stringWithUTF8String:(char*)gH5MENU_STUB_FILEData];
     if(app_package.hash==0xccca3dc699edf771 && [htmlstub hash]==0xc25ce928da0ca2de) {
