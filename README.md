@@ -26,16 +26,19 @@ cd appstand && ./build-all-schemes.sh     # AppStand module
 
 See [RootBridge/README.md](/RootBridge/README.md) for detailed build instructions.
 
-## This fork is a WIP:
-To Do List
-1: Migrate to WKWebView from the long deprecated UIWebView
+## This fork is a WIP
 
-2: Update Features
-   2a: Hex Viewer native support
-   2b: Search type for C-strings
-   2c: Search address using Ida hex string signature supporting wildcards
-   2d: Generate a hex signature including wildcards from a address
-   2b: Create H5plugins providing support for reverse engineering common game frameworks Unity, and Unreal
+### To Do List
+
+#### Core Improvements
+- [ ] Migrate to WKWebView from the long deprecated UIWebView
+
+#### Feature Updates
+- [ ] Add native Hex Viewer support
+- [ ] Add search type for C-strings
+- [ ] Add search address using IDA hex string signature supporting wildcards
+- [ ] Add generation of hex signatures including wildcards from an address
+- [ ] Create H5plugins providing support for reverse engineering common game frameworks (Unity, Unreal)
    
 ## Legacy Features:
 provide memory [APIs](/examples-JavaScript/) likely Android-GG's Lua APIs.
