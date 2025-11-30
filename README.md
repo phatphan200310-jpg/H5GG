@@ -4,20 +4,6 @@
 
 an iOS Mod Engine with JavaScript APIs & Html5 UI.
 
-provide memory [APIs](/examples-JavaScript/) likely Android-GG's Lua APIs.
-
-support load scripts(*.js or *.html file) from loacl or network.
-
-support load dylib plugin for javascript api ([demo](/pluginDemo/customAlert)).  
-
-support [auto search static pointer and offsets of the value](/examples-JavaScript/AutoSearchPointerChains.js).
-
-and you can customize UI by using [HTML+CSS](/examples-HTML5/) without computer.
-
-and you can make your own tweak(dylib) by click one button, so easy!
-
-**For fuzzy search it is recommended to use: https://igg-server.herokuapp.com/**
-
 ## Universal Jailbreak Support (NEW!)
 
 H5GG now includes [RootBridge](https://github.com/jjolano/RootBridge) for universal jailbreak compatibility:
@@ -39,6 +25,32 @@ cd appstand && ./build-all-schemes.sh     # AppStand module
 ```
 
 See [RootBridge/README.md](/RootBridge/README.md) for detailed build instructions.
+
+## This fork is a WIP:
+To Do List
+1: Migrate to WKWebView from the long deprecated UIWebView
+
+2: Update Features
+   2a: Hex Viewer native support
+   2b: Search type for C-strings
+   2c: Search address using Ida hex string signature supporting wildcards
+   2d: Generate a hex signature including wildcards from a address
+   2b: Create H5plugins providing support for reverse engineering common game frameworks Unity, and Unreal
+   
+## Legacy Features:
+provide memory [APIs](/examples-JavaScript/) likely Android-GG's Lua APIs.
+
+support load scripts(*.js or *.html file) from loacl or network.
+
+support load dylib plugin for javascript api ([demo](/pluginDemo/customAlert)).  
+
+support [auto search static pointer and offsets of the value](/examples-JavaScript/AutoSearchPointerChains.js).
+
+and you can customize UI by using [HTML+CSS](/examples-HTML5/) without computer.
+
+and you can make your own tweak(dylib) by click one button, so easy!
+
+**For fuzzy search it is recommended to use: https://igg-server.herokuapp.com/**
 
 ## H5GG supported 4 modes to run:
 
