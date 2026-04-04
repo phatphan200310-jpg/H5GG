@@ -3,6 +3,7 @@
 **Discuss in [Discord](https://discord.gg/FAs4MH7HMc) or [iosgods.com](https://iosgods.com/forum/595-h5gg-igamegod/)**
 
 an iOS Mod Engine with JavaScript APIs & Html5 UI.
+## Currently BROKEN - Attempting multiple upgrades
 
 ## Universal Jailbreak Support (NEW!)
 
@@ -32,6 +33,7 @@ See [RootBridge/README.md](/RootBridge/README.md) for detailed build instruction
 
 #### Core Improvements
 - [ ] Migrate to WKWebView from the long deprecated UIWebView
+- [ ] Find new hook method to reliably insert javascript to WKWebView
 
 #### Feature Updates
 - [ ] Add native Hex Viewer support
