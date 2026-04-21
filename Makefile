@@ -3,14 +3,14 @@ DEBUG = 0
 FINALPACKAGE = 1
 FOR_RELEASE = 1
 
-# Sử dụng SDK mới nhất có sẵn trên máy chủ GitHub
+# Thiết lập target tương thích với môi trường GitHub Actions
 TARGET = iphone:clang:latest:14.0
 
 include $(THEOS)/makefiles/common.mk
 
 TWEAK_NAME = H5GG
 
-# Liệt kê các file code cần biên dịch
+# Chỉ định các file nguồn của H5GG
 H5GG_FILES = Tweak.mm ldid-master/ldid.cpp
 H5GG_CFLAGS = -fobjc-arc -fvisibility=hidden
 H5GG_CCFLAGS = -fobjc-arc -fvisibility=hidden
