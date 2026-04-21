@@ -1,4 +1,4 @@
-name: Build H5GG Dylib
+name: Build H5GG for iOS 18
 on: [workflow_dispatch, push]
 
 jobs:
@@ -6,20 +6,24 @@ jobs:
     runs-on: macos-latest
     steps:
       - name: Checkout Code
-        uses: actions/checkout@v4
+        uses: actions/checkout@v3
 
-      - name: Setup Theos
+      - name: Install Theos and SDKs
         run: |
           bash -c "$(curl -fsSL https://raw.githubusercontent.com/theos/theos/master/bin/install-theos)"
           echo "THEOS=~/theos" >> $GITHUB_ENV
+          # Tải SDK 14.5 để đảm bảo việc biên dịch không bị lỗi thiếu file
+          curl -LO https://github.com/theos/sdks/raw/master/iPhoneOS14.5.sdk.tar.xz
+          tar -xf iPhoneOS14.5.sdk.tar.xz -C ~/theos/sdks
 
-      - name: Compile Dylib
+      - name: Build Dylib
         run: |
+          export THEOS=~/theos
           make clean
           make FINALPACKAGE=1
         
-      - name: Upload Artifact
-        uses: actions/upload-artifact@v4
+      - name: Upload H5GG Dylib
+        uses: actions/upload-artifact@v3
         with:
-          name: H5GG-Dylib
+          name: H5GG_iOS_18_Ready
           path: "./*.dylib"
