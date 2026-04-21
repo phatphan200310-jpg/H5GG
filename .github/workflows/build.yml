@@ -13,23 +13,22 @@ jobs:
           git clone --recursive https://github.com/theos/theos.git ~/theos
           echo "THEOS=~/theos" >> $GITHUB_ENV
 
-      - name: Install SDK Manually
+      - name: Install SDK 16.5
         run: |
           mkdir -p ~/theos/sdks
-          # Sử dụng link trực tiếp từ kho SDK uy tín để tránh lỗi format
-          curl -L "https://github.com/theos/sdks/raw/master/iPhoneOS14.5.sdk.tar.xz" -o ~/theos/sdks/iPhoneOS14.5.sdk.tar.xz
-          tar -xf ~/theos/sdks/iPhoneOS14.5.sdk.tar.xz -C ~/theos/sdks
-          rm ~/theos/sdks/iPhoneOS14.5.sdk.tar.xz
+          # Tải SDK 16.5 trực tiếp để tránh lỗi giải nén
+          curl -ksL "https://github.com/theos/sdks/raw/master/iPhoneOS16.5.sdk.tar.xz" -o ~/theos/sdks/iPhoneOS16.5.sdk.tar.xz
+          tar -xf ~/theos/sdks/iPhoneOS16.5.sdk.tar.xz -C ~/theos/sdks
+          rm ~/theos/sdks/iPhoneOS16.5.sdk.tar.xz
 
       - name: Build Dylib
         run: |
           export THEOS=~/theos
-          # Ép biên dịch với kiến trúc arm64 và SDK 14.5
           make clean
-          make FINALPACKAGE=1 ARCHS="arm64 arm64e" SDKVERSION=14.5
+          make FINALPACKAGE=1
         
       - name: Upload H5GG Dylib
         uses: actions/upload-artifact@v4
         with:
-          name: H5GG_Dylib_Ready
+          name: H5GG_Ready_iOS18
           path: "./*.dylib"
