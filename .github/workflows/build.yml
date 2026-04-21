@@ -8,21 +8,30 @@ jobs:
       - name: Checkout Code
         uses: actions/checkout@v4
 
-      - name: Install Theos and SDKs
+      - name: Setup Theos
         run: |
-          bash -c "$(curl -fsSL https://raw.githubusercontent.com/theos/theos/master/bin/install-theos)"
+          # Cài đặt Theos thủ công để tránh lỗi API GitHub
+          git clone --recursive https://github.com/theos/theos.git ~/theos
           echo "THEOS=~/theos" >> $GITHUB_ENV
-          curl -LO https://github.com/theos/sdks/raw/master/iPhoneOS14.5.sdk.tar.xz
-          tar -xf iPhoneOS14.5.sdk.tar.xz -C ~/theos/sdks
+
+      - name: Install SDK Manually
+        run: |
+          # Tự tải SDK từ kho lưu trữ của Theos để không bị lỗi API
+          mkdir -p ~/theos/sdks
+          curl -L https://github.com/theos/sdks/raw/master/iPhoneOS14.5.sdk.tar.xz -o ~/theos/sdks/iPhoneOS14.5.sdk.tar.xz
+          tar -xf ~/theos/sdks/iPhoneOS14.5.sdk.tar.xz -C ~/theos/sdks
+          # Xóa file nén sau khi giải nén để nhẹ máy
+          rm ~/theos/sdks/iPhoneOS14.5.sdk.tar.xz
 
       - name: Build Dylib
         run: |
           export THEOS=~/theos
+          # Ép biên dịch với kiến trúc arm64 và SDK đã tải
           make clean
-          make FINALPACKAGE=1
+          make FINALPACKAGE=1 ARCHS="arm64 arm64e" SDKVERSION=14.5
         
-      - name: Upload H5GG Dylib
+      - name: Upload Artifact
         uses: actions/upload-artifact@v4
         with:
-          name: H5GG_iOS_18_Ready
+          name: H5GG_Dylib_Fixed
           path: "./*.dylib"
